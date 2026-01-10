@@ -1,0 +1,511 @@
+2026-01-10 12:51:47: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 12:51:47: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 12:51:47: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 12:51:47: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 12:51:47: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 12:51:47: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 12:51:47: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:47: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 12:51:47: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 12:51:47: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 12:51:47: select max(`batch`) as aggregate from `migrations`
+2026-01-10 12:51:47: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:47: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 12:51:47: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:47: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:47: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 12:51:47: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 12:51:48: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 12:51:48: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:48: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:48: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 12:51:48: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:48: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 12:51:48: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:48: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:48: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 12:51:48: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 12:51:48: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 12:51:48: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 12:51:48: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:26:57: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:26:57: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:26:57: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:26:57: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:26:57: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:26:57: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:26:57: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:57: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:26:58: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:26:58: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:26:58: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:26:58: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:26:58: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:26:58: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:26:58: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:26:58: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:26:58: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:26:58: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:26:58: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:26:58: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:26:58: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:26:58: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:28:02: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:28:02: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:28:02: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:28:02: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:28:02: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:28:02: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:28:02: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:02: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:28:02: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:28:02: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:28:02: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:28:03: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:28:03: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:28:03: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:28:03: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:28:03: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:28:03: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:28:03: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:28:03: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:28:03: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:03: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:28:03: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:28:03: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:28:03: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:28:03: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:28:03', '2026-01-10 13:28:03')
+2026-01-10 13:28:04: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:28:04: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:28:04' where `id` = 1
+2026-01-10 13:28:04: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:28:04', `organizations`.`updated_at` = '2026-01-10 13:28:04' where `id` = 1
+2026-01-10 13:28:46: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:28:46: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:28:46: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:28:46: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:28:46: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:28:46: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:28:46: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:46: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:28:46: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:28:46: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:28:46: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:28:46: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:46: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:28:46: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:46: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:46: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:28:47: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:28:47: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:28:47: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:47: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:47: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:28:47: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:47: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:28:47: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:47: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:47: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:28:47: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:28:47: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:28:47: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:28:47: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:31:54: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:31:54: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:31:54: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:31:54: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:31:54: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:31:54: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:31:54: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:54: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:31:54: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:31:54: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:31:54: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:31:54: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:31:55: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:31:55: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:31:55: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:31:55: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:31:55: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:31:55: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:31:55: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:31:55: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:31:55: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:31:55: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:33:02: select count(*) as aggregate from `organizations` where `domain` = 'abccom6'
+2026-01-10 13:33:02: select * from `cache` where `key` in ('laravel_cache_companies_abccom6')
+2026-01-10 13:33:02: select `id`, `name`, `domain` from `organizations` where `name` = 'ABC6' and `domain` = 'abccom6'
+2026-01-10 13:33:02: insert into `cache` (`expiration`, `key`, `value`) values (1768032242, 'laravel_cache_companies_abccom6', 'O:39:"Illuminate\Database\Eloquent\Collection":2:{s:8:" * items";a:0:{}s:28:" * escapeWhenCastingToString";b:0;}') on duplicate key update `expiration` = values(`expiration`), `key` = values(`key`), `value` = values(`value`)
+2026-01-10 13:33:02: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('ABC6', 'abccom6', 'test@abc6.com', 'pending', '2026-01-10 13:33:02', '2026-01-10 13:33:02')
+2026-01-10 13:33:02: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:33:02: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:33:02' where `id` = 1
+2026-01-10 13:33:02: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:33:02', `organizations`.`updated_at` = '2026-01-10 13:33:02' where `id` = 1
+2026-01-10 13:35:26: select count(*) as aggregate from `organizations` where `domain` = 'abccom6'
+2026-01-10 13:37:08: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:37:08: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:37:08: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:37:09: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:37:09: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:37:09: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:37:09: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:09: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:37:09: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:37:09: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:37:09: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:37:09: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:09: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:37:09: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:09: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:37:10: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:37:10: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:37:10: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:37:10: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:37:10: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:37:10: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:37:10: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:37:10: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:37:10: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:37:10: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:37:10: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:37:10: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:37:10', '2026-01-10 13:37:10')
+2026-01-10 13:37:10: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:37:10: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:37:10' where `id` = 1
+2026-01-10 13:37:10: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:37:10', `organizations`.`updated_at` = '2026-01-10 13:37:10' where `id` = 1
+2026-01-10 13:38:52: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:38:52: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:38:52: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:38:52: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:38:52: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:38:52: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:38:52: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:52: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:38:52: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:38:53: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:38:53: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:38:53: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:38:53: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:38:53: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:38:53: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:38:53: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:38:53: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:38:53: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:53: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:54: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:38:54: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:38:54: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:38:54: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:38:54: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:38:54: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:38:54: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:38:54: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:38:54', '2026-01-10 13:38:54')
+2026-01-10 13:38:54: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:38:54: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:38:54' where `id` = 1
+2026-01-10 13:38:54: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:38:54', `organizations`.`updated_at` = '2026-01-10 13:38:54' where `id` = 1
+2026-01-10 13:39:38: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:39:38: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:39:38: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:39:38: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:39:38: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:39:38: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:39:38: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:39:38: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:39:38: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:39:38: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:39:38: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:39:38: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:39:38: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:39:38: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:39:38: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:39:38: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:39:38: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:38: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:39:38: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:39:39: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:39:39: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:39:39: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:39:39: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:39:39: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:39:39: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:39:39', '2026-01-10 13:39:39')
+2026-01-10 13:39:39: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:39:39: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:39:39' where `id` = 1
+2026-01-10 13:39:39: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:39:39', `organizations`.`updated_at` = '2026-01-10 13:39:39' where `id` = 1
+2026-01-10 13:39:39: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:39:39: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:39:39: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:39:39', '2026-01-10 13:39:39')
+2026-01-10 13:39:39: select * from `organizations` where `organizations`.`id` = 2 limit 1
+2026-01-10 13:39:39: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:39:39' where `id` = 2
+2026-01-10 13:39:39: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:39:39', `organizations`.`updated_at` = '2026-01-10 13:39:39' where `id` = 2
+2026-01-10 13:44:28: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:44:28: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:44:28: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:44:28: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:44:28: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:44:28: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:44:29: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:44:29: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:44:29: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:44:29: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:44:29: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:44:29: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:44:29: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:44:29: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:44:29: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:44:29: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:44:29: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:44:29: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:44:29: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:29: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:44:29: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:44:29: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:44:29: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:44:29: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:44:29', '2026-01-10 13:44:29')
+2026-01-10 13:44:30: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:44:30: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:44:30' where `id` = 1
+2026-01-10 13:44:30: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:44:30', `organizations`.`updated_at` = '2026-01-10 13:44:30' where `id` = 1
+2026-01-10 13:44:30: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:44:30: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:44:30: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:44:30', '2026-01-10 13:44:30')
+2026-01-10 13:44:30: select * from `organizations` where `organizations`.`id` = 2 limit 1
+2026-01-10 13:44:30: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:44:30' where `id` = 2
+2026-01-10 13:44:30: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:44:30', `organizations`.`updated_at` = '2026-01-10 13:44:30' where `id` = 2
+2026-01-10 13:44:51: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:44:51: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:44:51: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:44:51: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:44:51: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:44:51: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:44:51: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:44:51: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:44:51: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:44:51: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:44:51: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:44:51: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:44:51: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:44:51: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:44:51: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:44:51: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:44:51: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:51: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:44:51: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:44:51: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:44:52: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:44:52: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:44:53: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:44:53: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:44:53: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:44:53', '2026-01-10 13:44:53')
+2026-01-10 13:44:53: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:44:53: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:44:53' where `id` = 1
+2026-01-10 13:44:53: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:44:53', `organizations`.`updated_at` = '2026-01-10 13:44:53' where `id` = 1
+2026-01-10 13:44:53: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:44:53: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:44:53: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:44:53', '2026-01-10 13:44:53')
+2026-01-10 13:44:53: select * from `organizations` where `organizations`.`id` = 2 limit 1
+2026-01-10 13:44:53: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:44:53' where `id` = 2
+2026-01-10 13:44:53: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:44:53', `organizations`.`updated_at` = '2026-01-10 13:44:53' where `id` = 2
+2026-01-10 13:50:34: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:50:34: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 13:50:34: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 13:50:34: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 13:50:34: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 13:50:34: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:50:34: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 13:50:34: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:50:34: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 13:50:34: select max(`batch`) as aggregate from `migrations`
+2026-01-10 13:50:34: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 13:50:34: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 13:50:34: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 13:50:34: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 13:50:34: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 13:50:34: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 13:50:34: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 13:50:34: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 13:50:34: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 13:50:34: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 13:50:34: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 13:50:35: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 13:50:35: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 13:50:35: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 13:50:35', '2026-01-10 13:50:35')
+2026-01-10 13:50:35: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 13:50:35: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 13:50:35' where `id` = 1
+2026-01-10 13:50:35: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 13:50:35', `organizations`.`updated_at` = '2026-01-10 13:50:35' where `id` = 1
+2026-01-10 13:52:58: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:02:17: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:02:17: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 14:02:17: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 14:02:17: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 14:02:17: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 14:02:17: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:02:17: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:17: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:02:17: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 14:02:17: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 14:02:17: select max(`batch`) as aggregate from `migrations`
+2026-01-10 14:02:17: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:17: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 14:02:17: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:17: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:17: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 14:02:17: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 14:02:17: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 14:02:17: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:18: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:18: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 14:02:18: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:18: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 14:02:18: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:18: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:18: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 14:02:18: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 14:02:18: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:02:18: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 14:02:18: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 14:02:18: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 14:09:48: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:10:22: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:10:27: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:16:36: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:16:45: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:41:45: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'
+2026-01-10 14:42:05: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:42:05: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 14:42:05: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 14:42:05: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 14:42:05: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 14:42:05: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:42:05: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:42:05: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 14:42:05: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 14:42:05: select max(`batch`) as aggregate from `migrations`
+2026-01-10 14:42:05: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 14:42:05: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 14:42:05: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 14:42:05: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 14:42:05: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 14:42:05: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 14:42:05: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:05: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 14:42:06: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 14:42:06: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:42:06: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 14:42:06: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 14:42:06: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 14:42:06: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 14:42:06: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 14:42:06', '2026-01-10 14:42:06')
+2026-01-10 14:42:06: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 14:42:06: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 14:42:06' where `id` = 1
+2026-01-10 14:42:06: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 14:42:06', `organizations`.`updated_at` = '2026-01-10 14:42:06' where `id` = 1
+2026-01-10 14:43:35: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:43:35: select table_name as `name`, (data_length + index_length) as `size`, table_comment as `comment`, engine as `engine`, table_collation as `collation` from information_schema.tables where table_schema = 'assesment' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED') order by table_name
+2026-01-10 14:43:35: SET FOREIGN_KEY_CHECKS=0;
+2026-01-10 14:43:35: drop table `cache`,`cache_locks`,`failed_jobs`,`job_batches`,`jobs`,`migrations`,`organizations`,`password_reset_tokens`,`sessions`,`users`
+2026-01-10 14:43:35: SET FOREIGN_KEY_CHECKS=1;
+2026-01-10 14:43:35: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:43:35: create table `migrations` (`id` int unsigned not null auto_increment primary key, `migration` varchar(255) not null, `batch` int not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:35: select exists (select 1 from information_schema.tables where table_schema = 'assesment' and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as `exists`
+2026-01-10 14:43:35: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 14:43:35: select `migration` from `migrations` order by `batch` asc, `migration` asc
+2026-01-10 14:43:35: select max(`batch`) as aggregate from `migrations`
+2026-01-10 14:43:35: create table `users` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `email` varchar(255) not null, `email_verified_at` timestamp null, `password` varchar(255) not null, `remember_token` varchar(100) null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:35: alter table `users` add unique `users_email_unique`(`email`)
+2026-01-10 14:43:35: create table `password_reset_tokens` (`email` varchar(255) not null, `token` varchar(255) not null, `created_at` timestamp null, primary key (`email`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:35: create table `sessions` (`id` varchar(255) not null, `user_id` bigint unsigned null, `ip_address` varchar(45) null, `user_agent` text null, `payload` longtext not null, `last_activity` int not null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:35: alter table `sessions` add index `sessions_user_id_index`(`user_id`)
+2026-01-10 14:43:35: alter table `sessions` add index `sessions_last_activity_index`(`last_activity`)
+2026-01-10 14:43:35: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000000_create_users_table', 1)
+2026-01-10 14:43:35: create table `cache` (`key` varchar(255) not null, `value` mediumtext not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:35: create table `cache_locks` (`key` varchar(255) not null, `owner` varchar(255) not null, `expiration` int not null, primary key (`key`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:35: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000001_create_cache_table', 1)
+2026-01-10 14:43:35: create table `jobs` (`id` bigint unsigned not null auto_increment primary key, `queue` varchar(255) not null, `payload` longtext not null, `attempts` tinyint unsigned not null, `reserved_at` int unsigned null, `available_at` int unsigned not null, `created_at` int unsigned not null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:36: alter table `jobs` add index `jobs_queue_index`(`queue`)
+2026-01-10 14:43:36: create table `job_batches` (`id` varchar(255) not null, `name` varchar(255) not null, `total_jobs` int not null, `pending_jobs` int not null, `failed_jobs` int not null, `failed_job_ids` longtext not null, `options` mediumtext null, `cancelled_at` int null, `created_at` int not null, `finished_at` int null, primary key (`id`)) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:36: create table `failed_jobs` (`id` bigint unsigned not null auto_increment primary key, `uuid` varchar(255) not null, `connection` text not null, `queue` text not null, `payload` longtext not null, `exception` longtext not null, `failed_at` timestamp not null default CURRENT_TIMESTAMP) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:36: alter table `failed_jobs` add unique `failed_jobs_uuid_unique`(`uuid`)
+2026-01-10 14:43:36: insert into `migrations` (`migration`, `batch`) values ('0001_01_01_000002_create_jobs_table', 1)
+2026-01-10 14:43:36: create table `organizations` (`id` bigint unsigned not null auto_increment primary key, `name` varchar(255) not null, `domain` varchar(255) not null, `contact_email` varchar(255) null, `status` enum('pending', 'processing', 'completed', 'failed') not null, `batch_id` varchar(255) null, `processed_at` datetime null, `failed_reason` text null, `created_at` timestamp null, `updated_at` timestamp null) default character set utf8mb4 collate 'utf8mb4_unicode_ci'
+2026-01-10 14:43:36: alter table `organizations` add unique `organizations_domain_unique`(`domain`)
+2026-01-10 14:43:36: insert into `migrations` (`migration`, `batch`) values ('2026_01_08_103620_create_organizations_table', 1)
+2026-01-10 14:43:36: select count(*) as aggregate from `organizations` where `domain` = 'example.com'
+2026-01-10 14:43:36: select `id`, `name`, `domain` from `organizations` where `name` = 'Test Company' and `domain` = 'example.com'
+2026-01-10 14:43:36: insert into `organizations` (`name`, `domain`, `contact_email`, `status`, `updated_at`, `created_at`) values ('Test Company', 'example.com', 'test@abc6.com', 'pending', '2026-01-10 14:43:36', '2026-01-10 14:43:36')
+2026-01-10 14:43:36: select * from `organizations` where `organizations`.`id` = 1 limit 1
+2026-01-10 14:43:36: update `organizations` set `status` = 'processing', `organizations`.`updated_at` = '2026-01-10 14:43:36' where `id` = 1
+2026-01-10 14:43:36: update `organizations` set `status` = 'completed', `processed_at` = '2026-01-10 14:43:36', `organizations`.`updated_at` = '2026-01-10 14:43:36' where `id` = 1
+2026-01-10 15:17:11: delete from `cache`
+2026-01-10 15:17:24: select count(*) as aggregate from `organizations` where `domain` = 'abcdcom7'

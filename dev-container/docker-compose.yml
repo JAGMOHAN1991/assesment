@@ -1,0 +1,70 @@
+services:
+
+  db:
+    image: mysql:8.0.32
+    container_name: db
+    platform: linux/amd64
+    networks:
+      - dev_network
+    environment:
+      MYSQL_ROOT_PASSWORD: 1fN82Avd7TT5Bad2
+      MYSQL_DATABASE: database_api
+      MYSQL_USER: database_api
+      MYSQL_PASSWORD: DDwgLAA3WH2a2k1h
+    ports:
+      - 3309:3306
+    volumes:
+      - data_upgrade:/var/lib/mysql
+
+  redis:
+    container_name: redis
+    image: redis:6
+    platform: linux/amd64
+    restart: always
+    networks:
+      - dev_network
+    ports:
+      - "6379:6379"
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64
+    networks:
+      - dev_network
+    links:
+      - db:db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: 1fN82Avd7TT5Bad2
+      MYSQL_USER: database_api
+      MYSQL_PASSWORD: DDwgLAA3WH2a2k1h
+    
+  tw_server:
+    build:
+      context: .
+      dockerfile: tw-nginx-dockerfile
+    platform: linux/amd64
+    container_name: tw_server
+    restart: always
+    networks:
+      - dev_network
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/phpmyadmin.conf:/etc/nginx/conf.d/phpmyadmin.conf
+      - ./nginx/assesment.conf:/etc/nginx/conf.d/assesment.conf
+      - ./assesment:/var/www/assesment:rw
+      - ./nginx/ssl:/etc/ssl:rw
+    ports:
+      - "82:82"
+      - "445:445"
+    depends_on:
+      - db
+  
+networks:
+  dev_network:
+    external: true
+volumes:
+  data: {}
+  data_upgrade: {}
