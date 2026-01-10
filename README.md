@@ -125,3 +125,24 @@ Here are some list of command that you can use:
 
 - **Composer (``` bfrs composer```)**: This command will run the composer install in your container.
 
+---
+### Testing Instructions
+- To run the tests, use the following command:
+  - ``` dev test ```
+
+### curl for API testing
+
+```bash
+curl --location 'http://api.assesment.local:85/api/bulk-onboard' \
+--header 'Content-Type:  application/json' \
+--header 'Accept:  application/json' \
+--data-raw '[
+    {
+        "name": "ABC6",
+        "domain": "abcd.com",
+        "contact_email": "test@abc6.com"
+    }
+]'
+
+```
+

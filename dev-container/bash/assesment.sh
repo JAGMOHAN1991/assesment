@@ -24,6 +24,9 @@ case $1 in
 "setup")
   bash setup.sh
   ;;
+"test")
+  bash test.sh
+  ;;
 *)
   echo "Invalid command: assesment $1"
   ;;
