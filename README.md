@@ -125,3 +125,26 @@ Here are some list of command that you can use:
 
 - **Composer (``` bfrs composer```)**: This command will run the composer install in your container.
 
+---
+### Testing Instructions
+- To run the tests, use the following command:
+  - ``` dev test ```
+
+### curl for API testing
+
+```bash
+curl --location 'http://api.assesment.local:85/api/bulk-onboard' \
+--header 'Content-Type:  application/json' \
+--header 'Accept:  application/json' \
+--data-raw '[
+    {
+        "name": "ABC6",
+        "domain": "abcd.com",
+        "contact_email": "test@abc6.com"
+    }
+]'
+
+```
+
+### Suggestions / Improvements
+1. For a scalable heavy load system, I would consider using a more robust message queue system like RabbitMQ or Apache Kafka instead of relying solely on Laravel's built-in queue system. This would allow for better handling of high throughput and complex message routing.

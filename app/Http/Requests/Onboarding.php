@@ -33,6 +33,7 @@ class Onboarding extends FormRequest
 				'string',
 				'max:255',
 				'distinct',                     // 👈 no duplicate domains in request
+				'regex:/^(?!-)(?:[a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,}$/',
 				'unique:organizations,domain', // 👈 no duplicate in DB
 			],
 

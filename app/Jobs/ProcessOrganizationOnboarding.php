@@ -26,6 +26,9 @@ class ProcessOrganizationOnboarding implements ShouldQueue
      */
     public function handle(): void
     {
+		if ($this->companiesData->{Organization::STATUS} === Organization::STATUS_COMPLETED) {
+			return;
+		}
 		
 		$this->companiesData->update([
 										 Organization::STATUS => Organization::STATUS_PROCESSING,
@@ -46,7 +49,7 @@ class ProcessOrganizationOnboarding implements ShouldQueue
 			throw new \Exception("Onboarding failed due to external service error.");
 			
 		}
-		Log::info("orboarding successful for company id: ", [$this->companiesData->id]);
+		Log::info("Orboarding successful for company id: ", [$this->companiesData->id]);
     }
 
 	/**
