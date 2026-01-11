@@ -110,7 +110,7 @@ Below are the list of hosts that you can use:
 - [Assesment API](http://api.assesment.local) => ```http://api.assesment.local```.
 
 ---
-### Command Line Manager [BFRS]
+### Command Line Manager [DEV]
 Here are some list of command that you can use:
 
 #### Command For Container Start, Stop, Restart, Clean and Debug.
@@ -123,7 +123,7 @@ Here are some list of command that you can use:
 
 #### Command For Backend
 
-- **Composer (``` bfrs composer```)**: This command will run the composer install in your container.
+- **Composer (``` dev composer```)**: This command will run the composer install in your container.
 
 ---
 ### Testing Instructions
